@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Home - NLP Assignment Tracker{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 text-center">
+            <h1 class="display-4 mb-4">NLP-Powered Assignment Tracking System</h1>
+            <p class="lead mb-5">Leveraging Natural Language Processing to enhance education and assignment feedback</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Intelligent Analysis</h3>
+                    <p class="card-text">Our system uses advanced NLP to analyze assignments, extract key concepts, and identify important themes.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-comments fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Automated Feedback</h3>
+                    <p class="card-text">Receive instant, tailored feedback on your submissions with suggestions for improvement.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Progress Tracking</h3>
+                    <p class="card-text">Monitor your learning journey with detailed analytics on your performance and growth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="mb-4">Ready to get started?</h2>
+            {% if not current_user.is_authenticated %}
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg me-md-2">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">Register</a>
+                </div>
+            {% else %}
+                <a href="{{ url_for('student_dashboard' if not current_user.is_instructor else 'instructor_dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 
